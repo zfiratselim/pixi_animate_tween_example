@@ -1,7 +1,7 @@
 {
-    "name": "pixi_animate_tween",
+    "name": "pixi_animate_tween_example",
     "version": "1.0.0",
-    "description": "Pixi animate tween",
+    "description": "Pixi animate tween example",
     "main": "index.js",
     "author": "Fırat Selim ZİREKOĞLU",
     "license": "MIT",
