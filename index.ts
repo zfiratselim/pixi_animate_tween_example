@@ -34,12 +34,12 @@ export default class PixiAnimateTween extends PIXI.Application {
         con.addChild(sprite)
         return sprite
     }
-    action() {
-        this.tween = new Tween.Tween(this.sprite)
-            .to({ x: 150, y: 100 }, 1550)
+    action({ x, y }: { x: number, y: number }, easing) {
+        return new Tween.Tween(this.sprite)
+            .to({ x, y }, 1000)
             .repeat(0)
             .delay(500)
-            .easing(Tween.Easing.Quartic.In)
+            .easing(easing)
             .start();
     }
     ticcker() {
@@ -49,7 +49,19 @@ export default class PixiAnimateTween extends PIXI.Application {
     }
     startGame() {
         this.sprite = this.createCircleSprite(650, 400, 150, 0xFF0022, this.stage);
-        this.action();
+        this.action({ x: 500, y: 100 }, Tween.Easing.Cubic.InOut).onComplete(() => {
+            this.action({ x: 200, y: 400 }, Tween.Easing.Exponential.Out).onComplete(() => {
+                this.action({ x: 100, y: 200 }, Tween.Easing.Linear.None).onComplete(() => {
+                    this.action({ x: 1200, y: 700 }, Tween.Easing.Sinusoidal.InOut).onComplete(() => {
+                        this.action({ x: 100, y: 200 }, Tween.Easing.Quintic.InOut);
+                    })
+                })
+            })
+        })
+
+            ;
+
+
         this.ticcker();
     }
 }
